@@ -13,9 +13,9 @@ public class Merge {
   }
 
   /*sort the array from least to greatest value. This is a wrapper function*/
-  //public static void mergesort(int[]data){
-  //   mergesortHelp(data,
-  //}
+//  public static void mergesort(int[]data){
+//     mergesortHelp(data,
+//  }
 
 
   public static void mergesortHelp(int[] data, int lo, int hi) {
@@ -26,18 +26,47 @@ public class Merge {
     int middle = (lo+hi)/2;
     int[] leftArr = new int [middle];
     int[] rightArr = new int [middle];
-  //  int i = 0;
+    int i = 0;
     for (int x = lo; x < middle; x++) {
-      leftArr[lo] = data[x];
-      lo++;
+      leftArr[i] = data[x];
+      i++;
     }
-    lo = 0;
-    for (int y = middle; y < data.length; y++) {
-      rightArr[lo] = data[y];
-      lo++;
+    i = 0;
+    for (int y = middle; y < hi; y++) {
+      rightArr[i] = data[y];
+      i++;
     }
+
     mergesortHelp(leftArr,0,leftArr.length);
     mergesortHelp(rightArr,0,rightArr.length);
+
+    int index = 0;
+    int rCount = 0;
+    int lCount = 0;
+
+    while (lCount < leftArr.length && rCount < rightArr.length) {
+      if (leftArr[lCount] <= rightArr[rCount]) {
+        data[index] = leftArr[lCount];
+        lCount++;
+      } else {
+        data[index] = rightArr[rCount];
+        rCount++;
+      }
+      index++;
+    }
+
+    while (rCount < rightArr.length) {
+      data[index] = rightArr[rCount];
+      rCount++;
+      index++;
+    }
+
+    while(lCount < leftArr.length) {
+      data[index] = leftArr[lCount];
+      lCount++;
+      index++;
+    }
+
   }
 
 
