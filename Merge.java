@@ -19,13 +19,13 @@ public class Merge {
 
 
   public static void mergesortHelp(int[] data, int lo, int hi) {
-    if (lo >= hi) {
+    if (lo +1 >= hi) {
       pr(toString(data));
       return;
     }
-    int middle = (lo+hi)/2;
-    int[] leftArr = new int [middle];
-    int[] rightArr = new int [middle];
+    int middle = (hi+lo)/2;
+    int[] leftArr = new int [middle-lo];
+    int[] rightArr = new int [hi-middle];
     int i = 0;
     for (int x = lo; x < middle; x++) {
       leftArr[i] = data[x];
@@ -36,6 +36,7 @@ public class Merge {
       rightArr[i] = data[y];
       i++;
     }
+
 
     mergesortHelp(leftArr,0,leftArr.length);
     mergesortHelp(rightArr,0,rightArr.length);
@@ -86,6 +87,7 @@ public class Merge {
   public static void main(String[] args) {
     int[] test = {10,9,8,7};
     mergesortHelp(test,0,test.length);
+    System.out.println(toString(test));
   }
 
 }
