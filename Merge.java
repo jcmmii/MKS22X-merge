@@ -1,4 +1,17 @@
 public class Merge {
+
+  public static void insertionSort(int data[],int lo, int hi) {
+    for (int x = lo + 1; x <= hi; x++) {
+      int index = x;
+      int temp = data[x];
+      while (index -1 >= 0 && temp < data[index-1]) {
+        data[index] = data[index-1];
+        index--;
+      }
+      data[index] = temp;
+    }
+  }
+
   /*sort the array from least to greatest value. This is a wrapper function*/
   //public static void mergesort(int[]data){
   //   mergesortHelp(data,
@@ -46,19 +59,4 @@ public class Merge {
     mergesortHelp(test,0,test.length);
   }
 
-}
-
-
-
-/*
-public static void insertionSort(int data[],int lo, int hi) {
-  for (int x = lo + 1; x < data.length; x++) {
-    int index = x;
-    int temp = data[x];
-    while (index -1 >= 0 && temp < data[index-1]) {
-      data[index] = data[index-1];
-      index--;
-    }
-    data[index] = temp;
-  }
 }
