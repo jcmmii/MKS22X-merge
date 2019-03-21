@@ -32,7 +32,7 @@ public class Merge {
 
     //get middle value
     //create two arrays copying over values: leftArr gets first half, rightArr gets second
-    //for loop through and copy values from data onto leftArr and rightArr
+    //use Arrays.copyOfRange to copy over part of the original data array
     int middle = (hi+lo)/2;
     int[] leftArr = Arrays.copyOfRange(data,lo,middle);
     int[] rightArr = Arrays.copyOfRange(data,middle,hi);
