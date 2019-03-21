@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Merge {
   //insertionSort: modified so that it works on a subarray
   public static void insertionSort(int data[],int lo, int hi) {
@@ -36,6 +38,9 @@ public class Merge {
     //create two arrays with equal sizing
     //for loop through and copy values from data onto leftArr and rightArr
     int middle = (hi+lo)/2;
+    int[] leftArr = Arrays.copyOfRange(data,lo,middle);
+    int[] rightArr = Arrays.copyOfRange(data,middle,hi);
+    /*
     int[] leftArr = new int [middle-lo];
     int[] rightArr = new int [hi-middle];
     int i = 0;
@@ -48,10 +53,12 @@ public class Merge {
       rightArr[i] = data[y];
       i++;
     }
+    */
 
     mergesortHelp(leftArr,0,leftArr.length);
     mergesortHelp(rightArr,0,rightArr.length);
 
+    //keeping count of indices
     int index = 0;
     int rCount = 0;
     int lCount = 0;
@@ -72,7 +79,7 @@ public class Merge {
       index++;
     }
 
-    //any leftover values are added onto the data array
+    //any leftover values are added on
     while (rCount < rightArr.length) {
       data[index] = rightArr[rCount];
       rCount++;
@@ -86,7 +93,6 @@ public class Merge {
     }
 
   }
-
 
   public static String toString(int[] array) {
     String ret = "";
@@ -102,5 +108,6 @@ public class Merge {
     mergesortHelp(test,0,test.length);
     System.out.println(toString(test));
   }
+
 
 }
