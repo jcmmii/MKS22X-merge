@@ -22,38 +22,20 @@ public class Merge {
   //helper method for mergesort
   public static void mergesortHelp(int[] data, int lo, int hi) {
     //insertionSort optimization if the subarray is small enough
-    //determined that the best size is 40
+    //determined that the best size is 40(or around that)
     if (hi-lo <= 40) {
       insertionSort(data,lo,hi);
       return;
     }
 
-    //+1 helps avoid overflow
-    if (lo + 1 >= hi) {
-    //  System.out.println(toString(data));
-      return;
-    }
+    if (lo + 1 >= hi) return;
 
     //get middle value
-    //create two arrays with equal sizing
+    //create two arrays copying over values: leftArr gets first half, rightArr gets second
     //for loop through and copy values from data onto leftArr and rightArr
     int middle = (hi+lo)/2;
     int[] leftArr = Arrays.copyOfRange(data,lo,middle);
     int[] rightArr = Arrays.copyOfRange(data,middle,hi);
-    /*
-    int[] leftArr = new int [middle-lo];
-    int[] rightArr = new int [hi-middle];
-    int i = 0;
-    for (int x = lo; x < middle; x++) {
-      leftArr[i] = data[x];
-      i++;
-    }
-    i = 0;
-    for (int y = middle; y < hi; y++) {
-      rightArr[i] = data[y];
-      i++;
-    }
-    */
 
     mergesortHelp(leftArr,0,leftArr.length);
     mergesortHelp(rightArr,0,rightArr.length);
@@ -101,7 +83,6 @@ public class Merge {
     }
     return ret;
   }
-
 
   public static void main(String[] args) {
     int[] test = {10,9,8,7};
