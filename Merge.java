@@ -83,12 +83,13 @@ public class Merge {
     }
     return ret;
   }
-
+/*
   public static void main(String[] args) {
     int[] test = {10,9,8,7};
     mergesortHelp(test,0,test.length);
     System.out.println(toString(test));
   }
+  */
 
 
 }
