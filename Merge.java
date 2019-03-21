@@ -1,7 +1,7 @@
 public class Merge {
-
+  //insertionSort: modified so that it works on a subarray
   public static void insertionSort(int data[],int lo, int hi) {
-    for (int x = lo + 1; x <= hi; x++) {
+    for (int x = lo + 1; x < hi; x++) {
       int index = x;
       int temp = data[x];
       while (index -1 >= 0 && temp < data[index-1]) {
@@ -13,16 +13,28 @@ public class Merge {
   }
 
   /*sort the array from least to greatest value. This is a wrapper function*/
-//  public static void mergesort(int[]data){
-//     mergesortHelp(data,
-//  }
+  public static void mergesort(int[]data){
+     mergesortHelp(data,0,data.length);
+  }
 
-
+  //helper method for mergesort
   public static void mergesortHelp(int[] data, int lo, int hi) {
-    if (lo +1 >= hi) {
-      pr(toString(data));
+    //insertionSort optimization if the subarray is small enough
+    //determined that the best size is 40
+    if (hi-lo <= 40) {
+      insertionSort(data,lo,hi);
       return;
     }
+
+    //+1 helps avoid overflow
+    if (lo + 1 >= hi) {
+    //  System.out.println(toString(data));
+      return;
+    }
+
+    //get middle value
+    //create two arrays with equal sizing
+    //for loop through and copy values from data onto leftArr and rightArr
     int middle = (hi+lo)/2;
     int[] leftArr = new int [middle-lo];
     int[] rightArr = new int [hi-middle];
@@ -37,7 +49,6 @@ public class Merge {
       i++;
     }
 
-
     mergesortHelp(leftArr,0,leftArr.length);
     mergesortHelp(rightArr,0,rightArr.length);
 
@@ -46,6 +57,11 @@ public class Merge {
     int lCount = 0;
 
     while (lCount < leftArr.length && rCount < rightArr.length) {
+      //if value at leftArr[lCount] is <= rightArr[rCount] then sets the data index to that value
+      //adds 1 to lCount
+      //keeps repeating
+      //else: right[rCount] is greater, sets that to the data index, rCount is added by 1
+      //index goes up every time after each comparison is done
       if (leftArr[lCount] <= rightArr[rCount]) {
         data[index] = leftArr[lCount];
         lCount++;
@@ -56,6 +72,7 @@ public class Merge {
       index++;
     }
 
+    //any leftover values are added onto the data array
     while (rCount < rightArr.length) {
       data[index] = rightArr[rCount];
       rCount++;
@@ -70,10 +87,6 @@ public class Merge {
 
   }
 
-
-  private static void pr(String S){
-    System.out.println(S);
-  }
 
   public static String toString(int[] array) {
     String ret = "";
